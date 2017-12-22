@@ -1,5 +1,10 @@
-<head>
-    <title>Cancelar cita</title>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<html>
+   <head>
+    <title>Asignar cita</title>
 
 
     <link rel="shortcut icon" href="img/favicon.png"/>
@@ -23,6 +28,9 @@
         </script>
         <script 
             type="text/javascript" src="js/borrarStorage.js">
+        </script>
+        <script 
+            type="text/javascript" src="js/comprobarFechaCita.js">
         </script>
         
 </head>
@@ -54,7 +62,7 @@
 
 
              
-                <li><a href='asignarCita.html' id ='mainmenugcurrent'><span>Cancelar cita</span></a></li>
+                <li><a href='asignarCita.html' id ='mainmenugcurrent'><span>Asignar cita</span></a></li>
 
 
 
@@ -66,7 +74,7 @@
         <div id="sntmenucontent">
             <!-- Menu -->
             <div id='menu' class='grid_4'><div id='menutheme5'><ul>
-                        <li><a href='index.html'>Volver a inicio (cerrar sesion)</a></li>
+                         <li><a href='index.html'>Volver a inicio (cerrar sesion)</a></li>
     
                     </ul></div></div> 
 
@@ -80,7 +88,7 @@
                     <div id="contentborde">
                         <div id="webcontentcol">
                             <div class="grid_19">
-                                <h2>Cancelar cita previa</h2>
+                                <h2>Asignar cita previa</h2>
                                 <div class="clear2"></div>
                                 <p>Rellene los datos de su cita.</p>
                                 
@@ -94,12 +102,16 @@
                                     <div class="clear"></div>
                                     <p class="form-caption">Datos del paciente</p>
                                     
-                                    <div class="grid_6">
-                                        <label> TIS <br />
-                                            <input pattern="[0-9]{8}" id="TIS" maxlength="8" name="numTIS" class="numerico" type="text" required />
-                                        </label>
-                                   </div>
-                                  
+                                    <section id="cajadatos">
+                                     <input id="btninfo" name="mostrar info" value="Mostrar mi informacion" class="btngo" type="button" onClick="mostrarSS()"/>
+                                     </section>
+                                    
+                                    <p class="form-caption">Mis sanitarios</p>
+                                    
+                                    <section id="cajadatos2">
+                                     <input id="btnsanitarios" name="mostrarSanitarios" value="Mostrar mis sanitarios" class="btngo" type="button"/>
+                                     </section>
+
                                    
                                    <!--
                                     <div class="grid_6 fecha-nacimiento">
@@ -114,17 +126,38 @@
                                            
                                     </div> -->
                                     <div class="clear2"></div>
-                                    <p class="form-caption">Datos cita</p>
+                                    <p class="form-caption">Cita previa</p>
                                     
-                                    <div class="grid_6">
-                                        <label> Numero de la cita <br />
-                                            <input pattern="[0-9]{1,}" id="numCita" maxlength="40" name="numCita" class="numerico" type="text" required />
-                                        </label>
-                                   </div>
+                                    <div class="grid_7">
+                                        <p>Sanitario:
+                                            <select name="tiposanitario" id="tiposanitario">
+                                            <option value="01">Medico/a</option>  
+                                            <option value="02">Enfermero/a</option>
+                                            <option value="03">Matron/a</option>  
+                                            </select>     
+                                    </div>
+                                  
                                     
+                                    <section id="zonadatos">
+                                    </section>
+                                    
+                                    <p>Fecha y hora de la cita: <br />
+                                        <input type="date" name="fechaCita" id="fechaCita" required/>
+                                        <input type="time" name="horaCita" id="horaCita" min="09:15" max="10:00" step="900" required/>
+                                        <!-- dentro del input se podría poner max y min para definir la hora minima o maxima permitidas
+                                        step="900" para pasar de 15 en 15 minutos
+                                        
+                                        Esta opcion de separar la fecha de la hora para en un javascript comprobar si son validas:
+                                        
+                                         <input type="date" name="fecha" id="tiempolocal" required/>
+                                        <input type="time" name="hora" id="horita" min="09:15" max="10:00" step="900" required/>
+                                        
+                                        seria util para lo de la fecha de nacimiento
+                                        
+                                        -->
                                     <div class="clear2"></div>
                                     <div class="action_buttons center">
-                                        <input id="btnalta" name="dardealta" value="Cancelar su cita" class="btngo" type="button"/>
+                                        <input id="btnalta" name="dardealta" value="Confirmar cita" class="btngo" type="button"/>
                                         <input id="btlimpiar" name="limpiar" value="Limpiar" class="btngo" type="reset" />
                                     </div>
                                     <div style="display: none;"><input type="hidden" name="_sourcePage" value="Roo1ruVK35-_j34lwgxH4cto8i3O-iSEVbJbAJjhZ062li6LzStSNXkpuP8C7g_ugNY3hubWgMUMxqT-BzMnKO32RTMYkt3yTAxYYDPX1zlx-nK7QuuFIw==" /><input type="hidden" name="__fp" value="5ZDrEucaBneZdHKsx-55JM4dv6jAVsx0xztX8W8FUq4YftCat4h8e8yFfX2TRVBBc9InxRh21EcbPevbNIFlpU189e7WB1vxKd9s0KUzmK076YdkRnveIpCZs1oPODf14hcHjw0k-_yYNHBvq6eHv9WgI8NVlLz3J0eYlqbTXg4qP3G35c6buwZRfsH4r7oHI2SF7NFtMKu-MqYBErQT8ev-73rBceh9rZC9AdMTnMnslFzUpngrguWg0fNe-GXWD4yCzXXf05CyQMe__1DvuZPA-HO01sTnJ5XgybhSylFuWz8fHecvuI9Cf7vKOlxmShbXyw8pWaOLGBDHWQipOpi5CnbqWgl8U7qaU8xg7BSSp0gARsIUIA==" /></div></form>
@@ -145,5 +178,4 @@
                         </div>
                     <p><span class="pie">&nbsp;</span></p>
                 </div>
-
-
+</html>

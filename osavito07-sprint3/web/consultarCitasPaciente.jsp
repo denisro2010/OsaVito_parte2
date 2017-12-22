@@ -1,5 +1,8 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
 <head>
-    <title>Asignar/cancelar cita</title>
+    <title>Consultar citas</title>
 
 
     <link rel="shortcut icon" href="img/favicon.png"/>
@@ -14,13 +17,10 @@
     <link rel="stylesheet" href="css/snts-logado.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/text.css" type="text/css" media="screen" />
 
-
-        <script 
-        type="text/javascript" src="js/ValidarTiempoReal.js">
-        </script>
-        <script 
+<script 
             type="text/javascript" src="js/borrarStorage.js">
         </script>
+
 </head>
 <body>
     <div id="container" class="container_24">
@@ -30,8 +30,8 @@
         </div>
         <div class="grid_20">
 
-          <p id="tagline" style="margin-left:50px;">
-               OsaVito07 - Profesionales Sanitarios
+            <p id="tagline" style="margin-left:50px;">
+                OsaVito07 - Profesionales Sanitarios
             </p>
 
         </div>
@@ -46,14 +46,7 @@
         <div id="mainmenug" class="grid_20">
             <ul>
                 <!-- Secciones -->
-
-
-
-             
-                <li><a href='asignarOCancelar.html' id ='mainmenugcurrent'><span>Elegir accion</span></a></li>
-
-
-
+                <li><a href='consultarCitasPaciente.jsp' id ='mainmenugcurrent'><span>Consultar citas</span></a></li>
                 <!-- /Secciones -->
             </ul>
         </div>
@@ -62,6 +55,7 @@
             <!-- Menu -->
             <div id='menu' class='grid_4'><div id='menutheme5'><ul>
                         <li><a href='index.html'>Volver a inicio (cerrar sesion)</a></li>
+
                     </ul></div></div> 
 
             <!-- /Menu -->
@@ -74,15 +68,22 @@
                     <div id="contentborde">
                         <div id="webcontentcol">
                             <div class="grid_19">
-                                <h2>Quiere coger una cita nueva o cancelar una ya existente?</h2>
-                                
+                                <h2>Consultar citas</h2>
+                                <div class="clear2"></div>
+
+                                <form name="formDatos" id="formDatos" class="js-form-validation form-type-a" method="get">
+                                    <div id="errores">
+
+                                    </div>
+                                    
+                                    <!--    !!!!!!!!!!     -->
+                                    
+                                    
                                     <div class="clear2"></div>
                                     <div class="action_buttons center">
-                                        <input id="btasignarcita" name="cogercita" value="Coger una cita nueva" class="btngo" type="button" onclick="location='asignarCita.html'" />
-                                        <input id="btncancelarcita" name="cancelarcita" value="Cancelar una cita ya existente" class="btngo" type="button" onclick="location='cancelarCita.html'" />
-                                        <input id="btconsultarcita" name="consultarcita" value="Consultar citas" class="btngo" type="button" onclick="location='consultarCitasPaciente.jsp'" />
+                                        <input id="btnok" name="botonOK" value="Volver" class="btngo" type="button" onclick="location='asignarOCancelar.html'"/>
                                     </div>
-                                    <div style="display: none;"><input type="hidden" name="_sourcePage" value="Roo1ruVK35-_j34lwgxH4cto8i3O-iSEVbJbAJjhZ062li6LzStSNXkpuP8C7g_ugNY3hubWgMUMxqT-BzMnKO32RTMYkt3yTAxYYDPX1zlx-nK7QuuFIw==" /><input type="hidden" name="__fp" value="5ZDrEucaBneZdHKsx-55JM4dv6jAVsx0xztX8W8FUq4YftCat4h8e8yFfX2TRVBBc9InxRh21EcbPevbNIFlpU189e7WB1vxKd9s0KUzmK076YdkRnveIpCZs1oPODf14hcHjw0k-_yYNHBvq6eHv9WgI8NVlLz3J0eYlqbTXg4qP3G35c6buwZRfsH4r7oHI2SF7NFtMKu-MqYBErQT8ev-73rBceh9rZC9AdMTnMnslFzUpngrguWg0fNe-GXWD4yCzXXf05CyQMe__1DvuZPA-HO01sTnJ5XgybhSylFuWz8fHecvuI9Cf7vKOlxmShbXyw8pWaOLGBDHWQipOpi5CnbqWgl8U7qaU8xg7BSSp0gARsIUIA==" /></div>
+                                    <div style="display: none;"><input type="hidden" name="_sourcePage" value="Roo1ruVK35-_j34lwgxH4cto8i3O-iSEVbJbAJjhZ062li6LzStSNXkpuP8C7g_ugNY3hubWgMUMxqT-BzMnKO32RTMYkt3yTAxYYDPX1zlx-nK7QuuFIw==" /><input type="hidden" name="__fp" value="5ZDrEucaBneZdHKsx-55JM4dv6jAVsx0xztX8W8FUq4YftCat4h8e8yFfX2TRVBBc9InxRh21EcbPevbNIFlpU189e7WB1vxKd9s0KUzmK076YdkRnveIpCZs1oPODf14hcHjw0k-_yYNHBvq6eHv9WgI8NVlLz3J0eYlqbTXg4qP3G35c6buwZRfsH4r7oHI2SF7NFtMKu-MqYBErQT8ev-73rBceh9rZC9AdMTnMnslFzUpngrguWg0fNe-GXWD4yCzXXf05CyQMe__1DvuZPA-HO01sTnJ5XgybhSylFuWz8fHecvuI9Cf7vKOlxmShbXyw8pWaOLGBDHWQipOpi5CnbqWgl8U7qaU8xg7BSSp0gARsIUIA==" /></div></form>
                             </div>
                         </div>
                         <div class="clear"></div>
@@ -91,14 +92,14 @@
                 <div id="footer" class="grid_20">
                     <p>
 
-           
+
                         <a target="_blank" href="http://www.ehu.eus"><span class="pie">UPV/EHU</span></a>
                         | 2017 &copy Grupo07 ADSI
-                        <div id="logobottom" class="grid_4">
-                            <img src="img/DENKOL.png" width="160" height="100"
-                                alt="DENKOL Logo" style="margin-left:325px; margin-top:-10px"/>
-                        </div>
+                    <div id="logobottom" class="grid_4">
+                        <img src="img/DENKOL.png" width="160" height="100"
+                             alt="DENKOL Logo" style="margin-left:325px; margin-top:-10px"/>
+                    </div>
+
                     <p><span class="pie">&nbsp;</span></p>
                 </div>
-
-
+</html>
