@@ -86,7 +86,7 @@
                                     <h2>Cita previa</h2>
                                     <div class="clear2"></div>
                                     
-                                    ERROR. La cita que usted ha introducido no existe.
+                                    ERROR. La cita que usted ha introducido no existe o no le pertenece.
                                     
                                         <div class="clear2"></div>
                                         <div class="action_buttons center">

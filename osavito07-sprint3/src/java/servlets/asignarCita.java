@@ -29,10 +29,13 @@ import utils.BD;
 public class asignarCita extends HttpServlet {
 
     private Connection con;
-    private ResultSet rs;
     private ResultSet rs2;
     private Statement set;
     private Statement set2;
+    private ResultSet rs3;
+    private Statement set3;
+    private ResultSet rs4;
+    private Statement set4;
     String cad;
 
     @Override
@@ -66,7 +69,6 @@ public class asignarCita extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -108,24 +110,26 @@ public class asignarCita extends HttpServlet {
 
         String fcha;
         String hra;
+        String nColegiado;
 
         //Se puede poner la cita?
         try {
-            set2 = con.createStatement();
-            rs2 = set2.executeQuery(" SELECT tis, fecha, hora, numColegiado FROM citas WHERE tis='" + tis + "' ");
-            while (rs2.next()) {
-                fcha = rs2.getString("fecha");
-                hra = rs2.getString("hora");
+            set4 = con.createStatement();
+            rs4 = set4.executeQuery(" SELECT tis, fecha, hora, numColegiado FROM citas WHERE tis='" + tis + "' ");
+            while (rs4.next()) {
+                fcha = rs4.getString("fecha");
+                hra = rs4.getString("hora");
 
                 if (fechaCita.equals(fcha) || horaCita.equals(hra)) {
                     sePuede = false;
                 }
             }
-            rs2.close();
-            set2.close();
+            rs4.close();
+            set4.close();
         } catch (SQLException ex1) {
             System.out.println("Error" + ex1);
         }
+        
 
         //Recuperar el numColegiado del sanitario que se ha elegido
         try {
@@ -145,6 +149,25 @@ public class asignarCita extends HttpServlet {
         }
 
         s.setAttribute("numColegiado", numColegiado);
+        
+        //El sanitario puede?
+        try {
+            set3 = con.createStatement();
+            rs3 = set3.executeQuery(" SELECT fecha, hora, numColegiado FROM citas");
+            while (rs3.next()) {
+                fcha = rs3.getString("fecha");
+                hra = rs3.getString("hora");
+                nColegiado = rs3.getString("numColegiado");
+
+                if (numColegiado.equals(nColegiado) && horaCita.equals(hra) && fechaCita.equals(fcha)) {
+                    sePuede = false;
+                }
+            }
+            rs3.close();
+            set3.close();
+        } catch (SQLException ex1) {
+            System.out.println("Error" + ex1);
+        }
 
         Double codD = Math.floor((Math.random() * 1000000) + 1);
         int cod = codD.intValue();

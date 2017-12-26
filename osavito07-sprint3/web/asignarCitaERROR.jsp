@@ -86,7 +86,7 @@
                                     <h2>Cita previa</h2>
                                     <div class="clear2"></div>
                                     
-                                    ERROR. Usted ya tiene una cita asignada en esa fecha o ha cogido una cita con un matron(a) siendo hombre.
+                                    ERROR. Usted y/o su sanitario ya tienen asignada una cita en la fecha / hora seleccionadas, o ha cogido una cita con un matron(a) siendo hombre.
                                     
                                         <div class="clear2"></div>
                                         <div class="action_buttons center">
