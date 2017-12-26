@@ -207,16 +207,16 @@ function comprobarFechaCita(){
         
     if(fecha.value < hoy){
             alert("La fecha introducida es incorrecta.");
-            location.href="asignarCita.html";
+            location.href="asignarCita.jsp";
     }
     else if(fecha.value === hoy){
         if(reloj.value <= relojActual){
             alert("La hora introducida es incorrecta.");
-            location.href="asignarCita.html";
+            location.href="asignarCita.jsp";
         }
         else if(today.getDay() === '6' || today.getDay() === '0'){
             alert('Usted no puede coger una cita un fin de semana');
-            location.href="asignarCita.html";
+            location.href="asignarCita.jsp";
         }
         else{
             //guardarNumColegiado();
@@ -225,7 +225,7 @@ function comprobarFechaCita(){
     else{
         if(numDiaElegido === 6 || numDiaElegido === 0){
         alert('Usted no puede coger una cita un fin de semana');
-        location.href="asignarCita.html";
+        location.href="asignarCita.jsp";
         }
         else{
          //guardarNumColegiado();
@@ -234,7 +234,7 @@ function comprobarFechaCita(){
 }
     else{ //si el formulario no es valido
         alert('Algun dato introducido no es correcto o se ha dejado en blanco.');
-        location.href="asignarCita.html";
+        location.href="asignarCita.jsp";
     }
     
 } //fin function

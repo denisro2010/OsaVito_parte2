@@ -1,27 +1,36 @@
 
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="utils.BD"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
-   <head>
-    <title>Asignar cita</title>
+    <head>
+        <title>Asignar cita</title>
 
 
-    <link rel="shortcut icon" href="img/favicon.png"/>
-    <link rel="stylesheet" href="css/960_24_col.css" type="text/css" />
-    <link rel="stylesheet" href="css/dav-mat.css" type="text/css" media="screen"  />
-    <link rel="stylesheet" href="css/estilos.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/protax-reset.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/snt-gmb-forms.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/snt-gmb-xtras.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/snt-login.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/snt-modulo-cajas-2.css" type="text/css" />
-    <link rel="stylesheet" href="css/snts-logado.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/text.css" type="text/css" media="screen" />
+        <link rel="shortcut icon" href="img/favicon.png"/>
+        <link rel="stylesheet" href="css/960_24_col.css" type="text/css" />
+        <link rel="stylesheet" href="css/dav-mat.css" type="text/css" media="screen"  />
+        <link rel="stylesheet" href="css/estilos.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/protax-reset.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/snt-gmb-forms.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/snt-gmb-xtras.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/snt-login.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/snt-modulo-cajas-2.css" type="text/css" />
+        <link rel="stylesheet" href="css/snts-logado.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/text.css" type="text/css" media="screen" />
 
 
         <script 
-        type="text/javascript" src="js/ValidarTiempoReal.js">
+            type="text/javascript" src="js/ValidarTiempoReal.js">
         </script>
         <script 
             type="text/javascript" src="js/sesionstoragepaciente.js">
@@ -32,150 +41,225 @@
         <script 
             type="text/javascript" src="js/comprobarFechaCita.js">
         </script>
-        
-</head>
-<body>
-    <div id="container" class="container_24">
-        <div id="logo" class="grid_4">
-            <img src="img/OSAVITO.png" width="240" height="96"
-                 alt="OsaVito07 Logo"/>
-        </div>
-        <div class="grid_20">
 
-          <p id="tagline" style="margin-left:50px;">
-               OsaVito07 - Profesionales Sanitarios
-            </p>
-
-        </div>
-        <div id="logout" class="grid_20">
-
-
-
-            &nbsp;
-
-
-        </div>
-        <div id="mainmenug" class="grid_20">
-            <ul>
-                <!-- Secciones -->
-
-
-
-             
-                <li><a href='asignarCita.html' id ='mainmenugcurrent'><span>Asignar cita</span></a></li>
-
-
-
-
-                <!-- /Secciones -->
-            </ul>
-        </div>
-        <div class="clear"></div>
-        <div id="sntmenucontent">
-            <!-- Menu -->
-            <div id='menu' class='grid_4'><div id='menutheme5'><ul>
-                         <li><a href='index.html'>Volver a inicio (cerrar sesion)</a></li>
-    
-                    </ul></div></div> 
-
-            <!-- /Menu -->
+    </head>
+    <body>
+        <div id="container" class="container_24">
+            <div id="logo" class="grid_4">
+                <img src="img/OSAVITO.png" width="240" height="96"
+                     alt="OsaVito07 Logo"/>
+            </div>
             <div class="grid_20">
-                <div class="sntcontent" id="contenttheme9">
-                    <div id="sectioncab">
-                        <h1>Administracion de OsaVito07</h1>
-                    </div>
-                    <div class="clear"></div>
-                    <div id="contentborde">
-                        <div id="webcontentcol">
-                            <div class="grid_19">
-                                <h2>Asignar cita previa</h2>
-                                <div class="clear2"></div>
-                                <p>Rellene los datos de su cita.</p>
-                                
-                                <form name="formDatos" id="formDatos" class="js-form-validation form-type-a" method="get">
-                                    <div id="errores">
 
-                                    </div>
-                                    <input id="formulario" name="formulario" value="alta" type="hidden" />
-                                    <div class="clear"></div>
-                                    <p>* TODOS los datos son obligatorios</p>
-                                    <div class="clear"></div>
-                                    <p class="form-caption">Datos del paciente</p>
-                                    
-                                    <section id="cajadatos">
-                                     <input id="btninfo" name="mostrar info" value="Mostrar mi informacion" class="btngo" type="button" onClick="mostrarSS()"/>
-                                     </section>
-                                    
-                                    <p class="form-caption">Mis sanitarios</p>
-                                    
-                                    <section id="cajadatos2">
-                                     <input id="btnsanitarios" name="mostrarSanitarios" value="Mostrar mis sanitarios" class="btngo" type="button"/>
-                                     </section>
+                <p id="tagline" style="margin-left:50px;">
+                    OsaVito07 - Profesionales Sanitarios
+                </p>
 
-                                   
-                                   <!--
-                                    <div class="grid_6 fecha-nacimiento">
-                                        <p>Fecha: <br />
-                                            <input type="date" name="fecha" id="fecha" required/>
-                                    </div>
-                                    <div class="grid_3">
-                                        <p>Sexo: <br />
-                                           <input type="radio" name="radioSexo" value="H" required/>Hombre
-                                           <br />
-                                           <input type="radio" name="radioSexo" value="M" required/>Mujer 
-                                           
-                                    </div> -->
-                                    <div class="clear2"></div>
-                                    <p class="form-caption">Cita previa</p>
-                                    
-                                    <div class="grid_7">
-                                        <p>Sanitario:
-                                            <select name="tiposanitario" id="tiposanitario">
-                                            <option value="01">Medico/a</option>  
-                                            <option value="02">Enfermero/a</option>
-                                            <option value="03">Matron/a</option>  
-                                            </select>     
-                                    </div>
-                                  
-                                    
-                                    <section id="zonadatos">
-                                    </section>
-                                    
-                                    <p>Fecha y hora de la cita: <br />
-                                        <input type="date" name="fechaCita" id="fechaCita" required/>
-                                        <input type="time" name="horaCita" id="horaCita" min="09:15" max="10:00" step="900" required/>
-                                        <!-- dentro del input se podría poner max y min para definir la hora minima o maxima permitidas
-                                        step="900" para pasar de 15 en 15 minutos
-                                        
-                                        Esta opcion de separar la fecha de la hora para en un javascript comprobar si son validas:
-                                        
-                                         <input type="date" name="fecha" id="tiempolocal" required/>
-                                        <input type="time" name="hora" id="horita" min="09:15" max="10:00" step="900" required/>
-                                        
-                                        seria util para lo de la fecha de nacimiento
-                                        
-                                        -->
-                                    <div class="clear2"></div>
-                                    <div class="action_buttons center">
-                                        <input id="btnalta" name="dardealta" value="Confirmar cita" class="btngo" type="button"/>
-                                        <input id="btlimpiar" name="limpiar" value="Limpiar" class="btngo" type="reset" />
-                                    </div>
-                                    <div style="display: none;"><input type="hidden" name="_sourcePage" value="Roo1ruVK35-_j34lwgxH4cto8i3O-iSEVbJbAJjhZ062li6LzStSNXkpuP8C7g_ugNY3hubWgMUMxqT-BzMnKO32RTMYkt3yTAxYYDPX1zlx-nK7QuuFIw==" /><input type="hidden" name="__fp" value="5ZDrEucaBneZdHKsx-55JM4dv6jAVsx0xztX8W8FUq4YftCat4h8e8yFfX2TRVBBc9InxRh21EcbPevbNIFlpU189e7WB1vxKd9s0KUzmK076YdkRnveIpCZs1oPODf14hcHjw0k-_yYNHBvq6eHv9WgI8NVlLz3J0eYlqbTXg4qP3G35c6buwZRfsH4r7oHI2SF7NFtMKu-MqYBErQT8ev-73rBceh9rZC9AdMTnMnslFzUpngrguWg0fNe-GXWD4yCzXXf05CyQMe__1DvuZPA-HO01sTnJ5XgybhSylFuWz8fHecvuI9Cf7vKOlxmShbXyw8pWaOLGBDHWQipOpi5CnbqWgl8U7qaU8xg7BSSp0gARsIUIA==" /></div></form>
-                            </div>
+            </div>
+            <div id="logout" class="grid_20">
+
+
+
+                &nbsp;
+
+
+            </div>
+            <div id="mainmenug" class="grid_20">
+                <ul>
+                    <!-- Secciones -->
+
+
+
+
+                    <li><a href='asignarCita.html' id ='mainmenugcurrent'><span>Asignar cita</span></a></li>
+
+
+
+
+                    <!-- /Secciones -->
+                </ul>
+            </div>
+            <div class="clear"></div>
+            <div id="sntmenucontent">
+                <!-- Menu -->
+                <div id='menu' class='grid_4'><div id='menutheme5'><ul>
+                            <li><a href='index.html'>Volver a inicio (cerrar sesion)</a></li>
+
+                        </ul></div></div> 
+
+                <!-- /Menu -->
+                <div class="grid_20">
+                    <div class="sntcontent" id="contenttheme9">
+                        <div id="sectioncab">
+                            <h1>Administracion de OsaVito07</h1>
                         </div>
                         <div class="clear"></div>
-                    </div>
-                </div>
-                <div id="footer" class="grid_20">
-                    <p>
+                        <div id="contentborde">
+                            <div id="webcontentcol">
+                                <div class="grid_19">
+                                    <h2>Asignar cita previa</h2>
+                                    <div class="clear2"></div>
+                                    <p>Rellene los datos de su cita.</p>
 
-           
-                        <a target="_blank" href="http://www.ehu.eus"><span class="pie">UPV/EHU</span></a>
-                        | 2017 &copy Grupo07 ADSI
+                                    <%!
+                                        private Connection con;
+                                        private ResultSet rs;
+                                        private PreparedStatement ps;
+                                        private ResultSet rs2;
+                                        private PreparedStatement ps2;
+
+                                        public void jspInit() {
+                                            con = BD.getConexion();
+                                        }
+
+                                        ;
+                                    %>
+
+                                    <form name="formDatos" id="formDatos" method="post" action="asignarCita">
+                                        <div id="errores">
+
+                                        </div>
+                                        <input id="formulario" name="formulario" value="alta" type="hidden" />
+                                        <div class="clear"></div>
+                                        <p>* TODOS los datos son obligatorios</p>
+                                        <div class="clear"></div>
+                                        <p class="form-caption">Datos del paciente</p>
+
+                                        <section id="cajadatos">
+                                            <!-- <input id="btninfo" name="mostrar info" value="Mostrar mi informacion" class="btngo" type="button" onClick="mostrarSS()"/> -->
+
+                                            <%
+                                                try {
+                                                    String tis = (String) session.getAttribute("tis");
+                                                    String fechaNac = (String) session.getAttribute("fechaNacPac");;
+                                                    String nombre;
+                                                    String sexo;
+                                                    String telefono;
+                                                    ps2 = con.prepareStatement("SELECT nombre, sexo, telefono FROM pacientes WHERE TIS=?");
+                                                    ps2.setString(1, tis);
+                                                    rs2 = ps2.executeQuery();
+                                                    while (rs2.next()) {
+                                                        nombre = rs2.getString("nombre");
+                                                        sexo = rs2.getString("sexo");
+                                                        telefono = rs2.getString("telefono");
+                                                        if (telefono == null) 
+                                                            telefono = "Usted no tiene ningun telefono asignado";
+                                                        
+                                                        if (sexo.equals("M")) 
+                                                            sexo = "Masculino";
+                                                        else
+                                                            sexo = "Femenino";
+                                                        
+                                            %> 
+                                            TIS: <%=tis%>
+                                            <br>
+                                            Fecha de Nacimiento: <%=fechaNac%>
+                                            <br>
+                                            Nombre: <%=nombre%>
+                                            <br>
+                                            Sexo: <%=sexo%>
+                                            <br>
+                                            Telefono: <%=telefono%>
+                                            <br>
+                                            <%
+                                                    }
+                                                    rs2.close();
+                                                    ps2.close();
+                                                    //con.close();
+                                                } catch (Exception ex) {
+                                                    System.out.println("Error en acceso a BD" + ex);
+                                                }
+                                            %>
+
+
+                                        </section>
+
+                                        <p class="form-caption">Mis sanitarios</p>
+                                        <%
+                                            try {
+                                                String nombre;
+                                                String tipo;
+                                                String tis = (String) session.getAttribute("tis");
+                                                ps = con.prepareStatement("SELECT nombre, tipoSanitario FROM sanitarios WHERE numColegiado IN(SELECT numColegiado FROM sanitariosypacientes WHERE TIS=?)");
+                                                ps.setString(1, tis);
+                                                rs = ps.executeQuery();
+                                                while (rs.next()) {
+                                                    nombre = rs.getString("nombre");
+                                                    tipo = rs.getString("tipoSanitario");
+                                        %> 
+
+                                        <% if (tipo.equals("ME")) {
+                                                tipo = "Medico/a";
+                                            } else if (tipo.equals("EN")) {
+                                                tipo = "Enfermero/a";
+                                            } else {
+                                                tipo = "Matron/a";
+                                            }
+                                        %>
+                                        <%=nombre%> --- <%=tipo%>
+                                        <br>
+                                        <br>
+                                        <%
+                                                }
+                                                rs.close();
+                                                ps.close();
+                                                //con.close();
+                                            } catch (Exception ex) {
+                                                System.out.println("Error en acceso a BD" + ex);
+                                            }
+                                        %>
+
+                                        <div class="clear2"></div>
+                                        <p class="form-caption">Cita previa</p>
+
+                                        <div class="grid_7">
+                                            <p>Sanitario:
+                                                <select name="tiposanitario" id="tiposanitario">
+                                                    <option value="01">Medico/a</option>  
+                                                    <option value="02">Enfermero/a</option>
+                                                    <option value="03">Matron/a</option>  
+                                                </select>     
+                                        </div>
+
+
+                                        <section id="zonadatos">
+                                        </section>
+
+                                        <p>Fecha y hora de la cita: <br />
+                                            <input type="date" name="fechaCita" id="fechaCita" required/>
+                                            <input type="time" name="horaCita" id="horaCita" min="09:15" max="10:00" step="900" required/>
+                                            <!-- dentro del input se podría poner max y min para definir la hora minima o maxima permitidas
+                                            step="900" para pasar de 15 en 15 minutos
+                                            
+                                            Esta opcion de separar la fecha de la hora para en un javascript comprobar si son validas:
+                                            
+                                             <input type="date" name="fecha" id="tiempolocal" required/>
+                                            <input type="time" name="hora" id="horita" min="09:15" max="10:00" step="900" required/>
+                                            
+                                            seria util para lo de la fecha de nacimiento
+                                            
+                                            -->
+                                        <div class="clear2"></div>
+                                        <div class="action_buttons center">
+                                            <input id="btnalta" name="dardealta" value="Confirmar cita" class="btngo" type="button"/>
+                                            <input id="btlimpiar" name="limpiar" value="Limpiar" class="btngo" type="reset" />
+                                        </div>
+                                        <div style="display: none;"><input type="hidden" name="_sourcePage" value="Roo1ruVK35-_j34lwgxH4cto8i3O-iSEVbJbAJjhZ062li6LzStSNXkpuP8C7g_ugNY3hubWgMUMxqT-BzMnKO32RTMYkt3yTAxYYDPX1zlx-nK7QuuFIw==" /><input type="hidden" name="__fp" value="5ZDrEucaBneZdHKsx-55JM4dv6jAVsx0xztX8W8FUq4YftCat4h8e8yFfX2TRVBBc9InxRh21EcbPevbNIFlpU189e7WB1vxKd9s0KUzmK076YdkRnveIpCZs1oPODf14hcHjw0k-_yYNHBvq6eHv9WgI8NVlLz3J0eYlqbTXg4qP3G35c6buwZRfsH4r7oHI2SF7NFtMKu-MqYBErQT8ev-73rBceh9rZC9AdMTnMnslFzUpngrguWg0fNe-GXWD4yCzXXf05CyQMe__1DvuZPA-HO01sTnJ5XgybhSylFuWz8fHecvuI9Cf7vKOlxmShbXyw8pWaOLGBDHWQipOpi5CnbqWgl8U7qaU8xg7BSSp0gARsIUIA==" /></div></form>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div id="footer" class="grid_20">
+                        <p>
+
+
+                            <a target="_blank" href="http://www.ehu.eus"><span class="pie">UPV/EHU</span></a>
+                            | 2017 &copy Grupo07 ADSI
                         <div id="logobottom" class="grid_4">
                             <img src="img/DENKOL.png" width="160" height="100"
-                                alt="DENKOL Logo" style="margin-left:325px; margin-top:-10px"/>
+                                 alt="DENKOL Logo" style="margin-left:325px; margin-top:-10px"/>
                         </div>
-                    <p><span class="pie">&nbsp;</span></p>
-                </div>
-</html>
+                        <p><span class="pie">&nbsp;</span></p>
+                    </div>
+                    </html>

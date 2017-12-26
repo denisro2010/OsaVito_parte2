@@ -2,8 +2,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Login Sanitario</title>
+    <head>
+    <title>Login Paciente</title>
 
 
     <link rel="shortcut icon" href="img/favicon.png"/>
@@ -23,6 +23,7 @@
         type="text/javascript" src="js/ValidarTiempoReal.js">
     </script>
     <script src="js/sesionstoragepaciente.js"></script>
+    <script src="js/mostrarAlertLoginPaciente.js"></script>
 
 </head>
 <body>
@@ -49,7 +50,7 @@
         <div id="mainmenug" class="grid_20">
             <ul>
                 <!-- Secciones -->
-                <li><a href='loginSanitario.jsp' id ='mainmenugcurrent'><span>Login Sanitario</span></a></li>
+                <li><a href='loginPaciente.html' id ='mainmenugcurrent'><span>Login Paciente</span></a></li>
                 <!-- /Secciones -->
             </ul>
         </div>
@@ -58,7 +59,7 @@
             <!-- Menu -->
             <div id='menu' class='grid_4'><div id='menutheme5'><ul>
                         <li><a href='index.html'>Inicio</a></li>
-                        <li><a href='loginPaciente.jsp'>Login Paciente</a></li>
+                        <li><a href='loginSanitario.jsp'>Login Sanitario</a></li>
 
                     </ul></div></div> 
 
@@ -72,11 +73,11 @@
                     <div id="contentborde">
                         <div id="webcontentcol">
                             <div class="grid_19">
-                                <h2>Inicio de sesion sanitarios</h2>
+                                <h2>Inicio de sesion pacientes</h2>
                                 <div class="clear2"></div>
                                 <p>Introduzca sus datos para iniciar sesion.</p>
 
-                                <form name="formDatos" id="formDatos" method="post" action="">
+                                <form name="formDatos" id="formDatos" method="post" action="loginPaciente">
                                     <div id="errores">
 
                                     </div>
@@ -87,9 +88,14 @@
                                     <p class="form-caption">Login</p>
 
                                     <div class="grid_6">
-                                        <label> Numero de colegiado <br />
-                                            <input pattern="[0-9]{5}" id="cnNumColegiado" maxlength="5" name="persona.numColegiado" class="numerico" type="text" required />
+                                        <label> TIS <br />
+                                            <input pattern="[0-9]{8}" id="TIS" maxlength="8" name="numTIS" class="numerico" type="text" required />
                                         </label>
+                                    </div>
+
+                                    <div class="grid_6 fecha-nacimiento">
+                                        <p>Fecha de nacimiento: <br />
+                                            <input type="date" name="fecha" id="fechanacpac" required/>
                                     </div>
 
                                     <div class="clear2"></div>
@@ -116,4 +122,7 @@
 
                     <p><span class="pie">&nbsp;</span></p>
                 </div>
+
+
+
 </html>
