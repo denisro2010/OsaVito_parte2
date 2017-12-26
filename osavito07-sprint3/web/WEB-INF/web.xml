@@ -8,6 +8,10 @@
         <servlet-name>asignarCita</servlet-name>
         <servlet-class>servlets.asignarCita</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>cancelarCita</servlet-name>
+        <servlet-class>servlets.cancelarCita</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginPaciente</servlet-name>
         <url-pattern>/loginPaciente</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>asignarCita</servlet-name>
         <url-pattern>/asignarCita</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cancelarCita</servlet-name>
+        <url-pattern>/cancelarCita</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

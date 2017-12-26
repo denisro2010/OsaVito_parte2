@@ -63,7 +63,7 @@
 
 
              
-                <li><a href='asignarCita.html' id ='mainmenugcurrent'><span>Cancelar cita</span></a></li>
+                <li><a href='cancelarCita.jsp' id ='mainmenugcurrent'><span>Cancelar cita</span></a></li>
 
 
 
@@ -93,7 +93,7 @@
                                 <div class="clear2"></div>
                                 <p>Rellene los datos de su cita.</p>
                                 
-                                <form name="formDatos" id="formDatos" class="js-form-validation form-type-a" method="get">
+                                <form name="formDatos" id="formDatos" method="post" action="cancelarCita">
                                     <div id="errores">
 
                                     </div>
@@ -101,28 +101,7 @@
                                     <div class="clear"></div>
                                     <p>* TODOS los datos son obligatorios</p>
                                     <div class="clear"></div>
-                                    <p class="form-caption">Datos del paciente</p>
                                     
-                                    <div class="grid_6">
-                                        <label> TIS <br />
-                                            <input pattern="[0-9]{8}" id="TIS" maxlength="8" name="numTIS" class="numerico" type="text" required />
-                                        </label>
-                                   </div>
-                                  
-                                   
-                                   <!--
-                                    <div class="grid_6 fecha-nacimiento">
-                                        <p>Fecha: <br />
-                                            <input type="date" name="fecha" id="fecha" required/>
-                                    </div>
-                                    <div class="grid_3">
-                                        <p>Sexo: <br />
-                                           <input type="radio" name="radioSexo" value="H" required/>Hombre
-                                           <br />
-                                           <input type="radio" name="radioSexo" value="M" required/>Mujer 
-                                           
-                                    </div> -->
-                                    <div class="clear2"></div>
                                     <p class="form-caption">Datos cita</p>
                                     
                                     <div class="grid_6">
@@ -133,7 +112,7 @@
                                     
                                     <div class="clear2"></div>
                                     <div class="action_buttons center">
-                                        <input id="btnalta" name="dardealta" value="Cancelar su cita" class="btngo" type="button"/>
+                                        <input id="btnalta" name="dardealta" value="Cancelar su cita" class="btngo" type="submit"/>
                                         <input id="btlimpiar" name="limpiar" value="Limpiar" class="btngo" type="reset" />
                                     </div>
                                     <div style="display: none;"><input type="hidden" name="_sourcePage" value="Roo1ruVK35-_j34lwgxH4cto8i3O-iSEVbJbAJjhZ062li6LzStSNXkpuP8C7g_ugNY3hubWgMUMxqT-BzMnKO32RTMYkt3yTAxYYDPX1zlx-nK7QuuFIw==" /><input type="hidden" name="__fp" value="5ZDrEucaBneZdHKsx-55JM4dv6jAVsx0xztX8W8FUq4YftCat4h8e8yFfX2TRVBBc9InxRh21EcbPevbNIFlpU189e7WB1vxKd9s0KUzmK076YdkRnveIpCZs1oPODf14hcHjw0k-_yYNHBvq6eHv9WgI8NVlLz3J0eYlqbTXg4qP3G35c6buwZRfsH4r7oHI2SF7NFtMKu-MqYBErQT8ev-73rBceh9rZC9AdMTnMnslFzUpngrguWg0fNe-GXWD4yCzXXf05CyQMe__1DvuZPA-HO01sTnJ5XgybhSylFuWz8fHecvuI9Cf7vKOlxmShbXyw8pWaOLGBDHWQipOpi5CnbqWgl8U7qaU8xg7BSSp0gARsIUIA==" /></div></form>

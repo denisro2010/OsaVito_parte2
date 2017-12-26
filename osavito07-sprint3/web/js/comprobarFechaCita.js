@@ -219,7 +219,7 @@ function comprobarFechaCita(){
             location.href="asignarCita.jsp";
         }
         else{
-            //guardarNumColegiado();
+            document.formDatos.action = 'asignarCita';
         }
     }
     else{
@@ -228,7 +228,7 @@ function comprobarFechaCita(){
         location.href="asignarCita.jsp";
         }
         else{
-         //guardarNumColegiado();
+         document.formDatos.action = 'asignarCita';
         }
     } 
 }
