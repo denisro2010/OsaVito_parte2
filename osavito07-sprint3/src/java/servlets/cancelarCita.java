@@ -26,8 +26,11 @@ import utils.BD;
 public class cancelarCita extends HttpServlet {
     
     private Connection con;
-    private ResultSet rs;
     private Statement set;
+    private ResultSet rs2;
+    private Statement set2;
+    private ResultSet rs3;
+    private Statement set3;
     String cad;
     
     @Override
@@ -83,16 +86,44 @@ public class cancelarCita extends HttpServlet {
         HttpSession s = req.getSession(true);
         
         String tis = (String) s.getAttribute("tis");
-        String codCita = (String) s.getAttribute("codCita");
+        String codCita = (String) req.getParameter("numCita");
         
+        //Mira el numero de citas del paciente antes de borrar
+        int contInicial = 0;
+        try {
+            set3 = con.createStatement();
+            rs3 = set3.executeQuery("SELECT * FROM citas WHERE tis='" + tis + "'");
+            while(rs3.next()){
+                contInicial++;
+            }
+            rs3.close();
+            set3.close();
+        } catch (SQLException ex1) {}
+        
+        //Intenta borrar
         try {
             set = con.createStatement();
-            set.executeUpdate("DELETE FROM citas WHERE tis='" + tis + "' AND codCita=" + codCita + " ");
-            set.close();
+            set.executeUpdate("DELETE FROM citas WHERE tis='" + tis + "' AND codCita='" + codCita +"' ");
+            set.close();   
+        } catch (SQLException ex1) {}
+        
+        //Mira el numero de citas del paciente despues de borrar
+        int contFinal = 0;
+        try {
+            set2 = con.createStatement();
+            rs2 = set2.executeQuery("SELECT * FROM citas WHERE tis='" + tis + "'");
+            while(rs2.next()){
+                contFinal++;
+            }
+            rs2.close();
+            set2.close();
+        } catch (SQLException ex1) {}
+        
+        //Si habian mas citas antes que despues, entonces el numCita es correcto y la cita se ha borrado
+        if(contInicial > contFinal)
             res.sendRedirect("cancelarCitaOK.jsp");
-        } catch (SQLException ex1) {
+        else
             res.sendRedirect("cancelarCitaERROR.jsp");
-        }
  
     }
 

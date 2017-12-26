@@ -108,10 +108,11 @@ public class asignarCita extends HttpServlet {
 
         String fcha;
         String hra;
+
         //Se puede poner la cita?
         try {
             set2 = con.createStatement();
-            rs2 = set2.executeQuery(" SELECT tis, fecha, hora FROM citas WHERE tis='" + tis + "' ");
+            rs2 = set2.executeQuery(" SELECT tis, fecha, hora, numColegiado FROM citas WHERE tis='" + tis + "' ");
             while (rs2.next()) {
                 fcha = rs2.getString("fecha");
                 hra = rs2.getString("hora");
@@ -150,6 +151,7 @@ public class asignarCita extends HttpServlet {
         String codCita = String.valueOf(cod);
         s.setAttribute("codCita", codCita);
 
+        //Insertar cita, si esta es correcta
         try {
             if (sePuede) {
                 set = con.createStatement();
