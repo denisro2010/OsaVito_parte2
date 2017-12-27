@@ -1,3 +1,7 @@
+
+<%@page import="utils.BD"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -76,7 +80,68 @@
 
                                     </div>
                                     
-                                    Listar aqui las citas mediante codigo java en el jsp y servlets como en el ejercicio del futbol.
+                                    <!--Listar aqui las citas mediante codigo java en el jsp y servlets como en el ejercicio del futbol.
+                                    -->
+                                    <%
+                                        String fecha = (String) session.getAttribute("fechaCitas");
+                                    %>
+                                    Dia: <%=fecha%>
+                                    <br>
+                                    <br/>
+                                    
+                                    <table border=1>
+                                        <tr>
+                                            <td><strong>Hora</strong></td>
+                                            <td><strong>TIS Paciente</strong></td>
+                                            <td><strong>Nombre del paciente</strong></td>
+                                        </tr>
+                                        <%!
+                                            private Connection con;
+                                            private ResultSet rs;
+                                            private Statement set;
+                                            private ResultSet rs2;
+                                            private Statement set2;
+
+                                            public void jspInit() {
+                                                con = BD.getConexion();
+                                            }
+
+                                            ;
+                                        %>
+
+
+                                        <div id="errores">
+
+                                        </div>
+                                        <%
+                                            try {;
+                                                String hora;
+                                                String tisPac;
+                                                String nombrePac;
+                                                String numColegiado = (String) session.getAttribute("numColegiado");
+                                                set = con.createStatement();
+                                                rs = set.executeQuery("select citas.tis, citas.hora, pacientes.nombre from citas NATURAL JOIN pacientes WHERE citas.numColegiado = '"+ numColegiado +"' AND citas.fecha = '" + fecha + "';");
+                                                while (rs.next()) {
+                                                    hora = rs.getString("hora");
+                                                    tisPac = rs.getString("tis");
+                                                    nombrePac = rs.getString("nombre");
+                                        %> 
+                                        <tr>
+                                            <td><%=hora%></td>
+                                            <td><%=tisPac%></td>
+                                            <td><%=nombrePac%></td>
+                                        </tr>
+                                        <%
+                                                }
+                                                rs.close();
+                                                set.close();
+                                                //con.close();
+                                            } catch (Exception e) {
+                                                System.out.println("Error en acceso a BD");
+                                            }
+                                        %>
+                                    </table>
+
                                     
                                     <div class="clear2"></div>
                                     <div class="action_buttons center">

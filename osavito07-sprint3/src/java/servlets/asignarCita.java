@@ -132,6 +132,9 @@ public class asignarCita extends HttpServlet {
         
 
         //Recuperar el numColegiado del sanitario que se ha elegido
+        /*
+        Coge el num colegiado del medico que el paciente ha seleccionado para la cita
+        */
         try {
             set2 = con.createStatement();
             rs2 = set2.executeQuery("SELECT numColegiado, tipoSanitario FROM sanitarios WHERE numColegiado IN(SELECT numColegiado FROM sanitariosypacientes WHERE TIS='" + tis + "')");

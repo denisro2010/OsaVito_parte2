@@ -22,7 +22,7 @@
     <script 
         type="text/javascript" src="js/ValidarTiempoReal.js">
     </script>
-    <script src="js/sesionstoragepaciente.js"></script>
+    <script src="js/mostrarAlertLoginSanitario.js"></script>
 
 </head>
 <body>
