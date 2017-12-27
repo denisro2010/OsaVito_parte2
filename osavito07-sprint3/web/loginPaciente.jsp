@@ -49,7 +49,7 @@
         <div id="mainmenug" class="grid_20">
             <ul>
                 <!-- Secciones -->
-                <li><a href='loginPaciente.html' id ='mainmenugcurrent'><span>Login Paciente</span></a></li>
+                <li><a href='loginPaciente.jsp' id ='mainmenugcurrent'><span>Login Paciente</span></a></li>
                 <!-- /Secciones -->
             </ul>
         </div>
