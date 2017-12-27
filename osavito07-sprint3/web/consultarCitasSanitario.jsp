@@ -1,3 +1,6 @@
+<%@page import="utils.BD"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -70,6 +73,50 @@
                             <div class="grid_19">
                                 <h2>Consultar citas</h2>
                                 <div class="clear2"></div>
+                                
+                                <!-- Aqui empieza -->
+                                
+                                <%!
+                                            private Connection con;
+                                            private ResultSet rs;
+                                            private Statement set;
+
+                                            public void jspInit() {
+                                                con = BD.getConexion();
+                                            }
+
+                                            ;
+                                        %>
+                                        
+                                        <%
+                                            try {;
+                                                String tipo;
+                                                String nombreSani;
+                                                String tipoSani;
+                                                String numColegiado = (String) session.getAttribute("numColegiado");
+                                                set = con.createStatement();
+                                                rs = set.executeQuery("Select nombre, tipoSanitario from sanitarios where numColegiado='"+ numColegiado +"';");
+                                                while (rs.next()) {
+                                                    tipo = rs.getString("tipoSanitario");
+                                                    nombreSani = rs.getString("nombre");
+                                                    if(tipo.equals("ME"))
+                                                        tipoSani = "Dr./Dra. ";
+                                                    else if(tipo.equals("EN"))
+                                                        tipoSani = "enfermero/a ";
+                                                    else
+                                                        tipoSani = "matron/a ";
+                                        %> 
+                                Hola, <%=tipoSani%> <%=nombreSani%> 
+                                <%
+                                                }
+                                                rs.close();
+                                                set.close();
+                                                //con.close();
+                                            } catch (Exception e) {
+                                                System.out.println("Error en acceso a BD");
+                                            }
+                                        %>
+                                <br> <br/>
 
                                 <form name="formDatos" id="formDatos" class="js-form-validation form-type-a" method="post" action="cogerFechaCitasSanitario">
                                     <div id="errores">
